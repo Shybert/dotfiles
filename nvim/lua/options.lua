@@ -22,11 +22,3 @@ vim.opt.smartcase = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>")
-
--- Let's keep that register clean!
-vim.keymap.set("n", "x", '"_x')
-vim.keymap.set("n", "c", '"_c')
-vim.keymap.set("n", "dd", function()
-    if vim.fn.getline(".") == "" then return '"_dd' end
-    return "dd"
-end, { expr = true })
