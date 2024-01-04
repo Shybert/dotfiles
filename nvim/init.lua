@@ -452,6 +452,12 @@ local plugins = {
         "karb94/neoscroll.nvim",
         config = true,
     },
+    {
+        "ggandor/leap.nvim",
+        config = function()
+            require("leap").create_default_mappings()
+        end,
+    },
 
     -- Editing support
     { 'numToStr/Comment.nvim',               opts = {} },
