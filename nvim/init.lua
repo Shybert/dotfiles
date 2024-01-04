@@ -400,6 +400,20 @@ local plugins = {
             end
         },
     },
+    {
+        "sindrets/diffview.nvim",
+        opts = {},
+    },
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim",
+
+            "nvim-telescope/telescope.nvim",
+        },
+        config = true
+    },
 
     -- Terminal
     {
