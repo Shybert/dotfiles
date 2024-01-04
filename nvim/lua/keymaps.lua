@@ -18,3 +18,6 @@ vim.keymap.set("n", "dd", function()
     if vim.fn.getline(".") == "" then return '"_dd' end
     return "dd"
 end, { expr = true })
+
+-- Remove highlights and clear command line with Escape in normal mode
+vim.keymap.set("n", "<Esc>", ":nohl<CR>:echo<CR>")
