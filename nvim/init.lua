@@ -447,6 +447,12 @@ local plugins = {
         },
     },
 
+    -- Movement
+    {
+        "karb94/neoscroll.nvim",
+        config = true,
+    },
+
     -- Editing support
     { 'numToStr/Comment.nvim',               opts = {} },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",    opts = {} },

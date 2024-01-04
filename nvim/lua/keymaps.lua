@@ -11,6 +11,10 @@ vim.keymap.set("o", "iq", 'i"')
 vim.keymap.set("o", "az", "a'")
 vim.keymap.set("o", "iz", "i'")
 
+-- Keep cursor in the middle of the screen when jumping up and down
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+
 -- Let's keep that register clean!
 vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "c", '"_c')
