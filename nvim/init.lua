@@ -299,8 +299,6 @@ local plugins = {
             { "<leader>sg",      "<cmd>Telescope live_grep<cr>",                     desc = "Search Project" },
             { "<leader>ss",      "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Search Document Symbols" },
             { "<leader>sw",      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search Workspace Symbols" },
-
-            { "<leader>gs",      "<cmd>Telescope git_status<cr>",                    desc = "Git Status" },
         },
         opts = {
             extensions = {
@@ -401,10 +399,6 @@ local plugins = {
         },
     },
     {
-        "sindrets/diffview.nvim",
-        opts = {},
-    },
-    {
         "NeogitOrg/neogit",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -412,7 +406,10 @@ local plugins = {
 
             "nvim-telescope/telescope.nvim",
         },
-        config = true
+        config = true,
+        keys = {
+            { "<leader>g", "<cmd>Neogit<cr>" },
+        }
     },
 
     -- Terminal
