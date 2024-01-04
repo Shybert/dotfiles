@@ -429,6 +429,7 @@ local plugins = {
         config = true,
         opts = {
             autoload = true,
+            use_git_branch = true,
         },
     },
 
