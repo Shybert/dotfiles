@@ -33,15 +33,15 @@ local plugins = {
         opts = {
             highlight = { enable = true },
             indent = { enable = true },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<C-n>",
-                    node_incremental = "<C-n>",
-                    scope_incremental = "<C-s>",
-                    node_decremental = "<C-m>",
-                },
-            },
+            -- incremental_selection = {
+            --     enable = true,
+            --     keymaps = {
+            --         init_selection = "<C-n>",
+            --         node_incremental = "<C-n>",
+            --         scope_incremental = "<C-s>",
+            --         node_decremental = "<C-m>",
+            --     },
+            -- },
             ensure_installed = {
                 "json",
                 "javascript",
@@ -462,6 +462,11 @@ local plugins = {
     { 'numToStr/Comment.nvim',               opts = {} },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",    opts = {} },
     { 'echasnovski/mini.pairs',              version = false, opts = {} },
+    {
+        "mg979/vim-visual-multi",
+        branch = "master",
+        event = "VeryLazy",
+    },
 }
 
 require("lazy").setup(plugins)
