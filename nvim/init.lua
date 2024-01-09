@@ -352,6 +352,11 @@ local plugins = {
             },
         },
     },
+    {
+        'Aasim-A/scrollEOF.nvim',
+        event = { 'CursorMoved', 'WinScrolled' },
+        opts = {},
+    },
 
     -- Git integration
     {
