@@ -414,17 +414,6 @@ local plugins = {
         }
     },
 
-    -- Terminal
-    {
-        "akinsho/toggleterm.nvim",
-        event = "VeryLazy",
-        version = "*",
-        opts = {
-            size = 10,
-            open_mapping = "<c-s>",
-        },
-    },
-
     -- Virtual environment
     {
         "linux-cultist/venv-selector.nvim",
