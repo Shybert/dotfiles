@@ -458,6 +458,12 @@ local plugins = {
         end,
     },
 
+    -- Auto-save
+    {
+        "Pocco81/auto-save.nvim",
+        config = true,
+    },
+
     -- Editing support
     { 'numToStr/Comment.nvim',               opts = {} },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",    opts = {} },
