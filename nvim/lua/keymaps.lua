@@ -25,3 +25,7 @@ end, { expr = true })
 
 -- Remove highlights and clear command line with Escape in normal mode
 vim.keymap.set("n", "<Esc>", ":nohl<CR>:echo<CR>")
+
+-- Easier saving
+vim.keymap.set("n", "<C-s>", ":update<cr>")
+vim.keymap.set("i", "<C-s>", "<C-o>:update<cr>")
