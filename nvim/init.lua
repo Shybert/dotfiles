@@ -84,6 +84,7 @@ local plugins = {
                 "denols",
                 "html",
                 "typst_lsp",
+                "rust_analyzer",
                 -- "taplo", -- LSP for toml (for pyproject.toml files)
             },
         },
@@ -158,6 +159,10 @@ local plugins = {
             })
 
             require("lspconfig").typst_lsp.setup({
+                capabilities = lspCapabilities,
+            })
+
+            require("lspconfig").rust_analyzer.setup({
                 capabilities = lspCapabilities,
             })
         end,
