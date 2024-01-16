@@ -98,6 +98,9 @@ local plugins = {
             { "gr",        vim.lsp.buf.references,  desc = "Goto References" },
             { "<leader>c", vim.lsp.buf.code_action, desc = "Code Action" },
         },
+        dependencies = {
+            "folke/neodev.nvim",
+        },
         init = function()
             local lspCapabilities = vim.lsp.protocol.make_client_capabilities()
             lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
