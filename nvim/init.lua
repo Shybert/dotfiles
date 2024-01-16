@@ -459,11 +459,6 @@ local plugins = {
     { 'numToStr/Comment.nvim',               opts = {} },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",    opts = {} },
     { 'echasnovski/mini.pairs',              version = false, opts = {} },
-    {
-        "mg979/vim-visual-multi",
-        branch = "master",
-        event = "VeryLazy",
-    },
 }
 
 require("lazy").setup(plugins)
