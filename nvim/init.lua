@@ -342,6 +342,9 @@ local plugins = {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {},
+        keys = {
+            { "<leader>x", "<cmd>Trouble<cr>", desc = "Open diagnostics window" },
+        },
     },
 
     -- UI
