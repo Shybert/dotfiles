@@ -31,4 +31,4 @@ vim.keymap.set("n", "<C-s>", ":update<cr>")
 vim.keymap.set("i", "<C-s>", "<C-o>:update<cr>")
 
 -- Multi-cursor, but better?
-vim.keymap.set("n", "<C-n>", "*N")
+vim.keymap.set("n", "<C-n>", "*Ncgn")
