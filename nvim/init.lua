@@ -66,6 +66,15 @@ local plugins = {
             }
         },
     },
+    {
+        "chrisgrieser/nvim-various-textobjs",
+        lazy = false,
+        opts = {
+            useDefaultKeymaps = true,
+            disabledKeymaps = { "gc" },
+        },
+    },
+
     -- Icons used by various plugins
     { "nvim-tree/nvim-web-devicons",         lazy = true },
 

@@ -1,16 +1,3 @@
--- Remapped text objects
-vim.keymap.set("o", "ar", "a[")
-vim.keymap.set("o", "ir", "i[")
-
-vim.keymap.set("o", "ac", "a{")
-vim.keymap.set("o", "ic", "i{")
-
-vim.keymap.set("o", "aq", 'a"')
-vim.keymap.set("o", "iq", 'i"')
-
-vim.keymap.set("o", "az", "a'")
-vim.keymap.set("o", "iz", "i'")
-
 -- Keep cursor in the middle of the screen when jumping up and down
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
