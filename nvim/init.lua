@@ -33,15 +33,6 @@ local plugins = {
         opts = {
             highlight = { enable = true },
             indent = { enable = true },
-            -- incremental_selection = {
-            --     enable = true,
-            --     keymaps = {
-            --         init_selection = "<C-n>",
-            --         node_incremental = "<C-n>",
-            --         scope_incremental = "<C-s>",
-            --         node_decremental = "<C-m>",
-            --     },
-            -- },
             ensure_installed = {
                 "json",
                 "javascript",
@@ -103,9 +94,8 @@ local plugins = {
     {
         "neovim/nvim-lspconfig",
         keys = {
-            { "gd",        vim.lsp.buf.definition,  desc = "Goto Definition" },
-            { "gr",        vim.lsp.buf.references,  desc = "Goto References" },
-            { "<leader>c", vim.lsp.buf.code_action, desc = "Code Action" },
+            { "<leader>c",  vim.lsp.buf.code_action, desc = "Code Action" },
+            { "<leader>cr", vim.lsp.buf.rename,      desc = "Rename" },
         },
         dependencies = {
             "folke/neodev.nvim",
@@ -186,19 +176,14 @@ local plugins = {
         opts = {},
         keys = {
             {
-                "gpd",
+                "<leader>cp",
                 function() require("goto-preview").goto_preview_definition() end,
                 desc = "Preview definition",
             },
             {
-                "gpt",
-                function() require("goto-preview").goto_preview_type_definition() end,
-                desc = "Preview type definition",
-            },
-            {
-                "gpD",
-                function() require("goto-preview").goto_preview_declaration() end,
-                desc = "Preview declaration",
+                "<leader>cP",
+                function() require("goto-preview").close_all_win() end,
+                desc = "Close preview definition windows",
             },
         }
     },
