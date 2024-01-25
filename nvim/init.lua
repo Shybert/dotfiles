@@ -375,6 +375,10 @@ local plugins = {
         event = { 'CursorMoved', 'WinScrolled' },
         opts = {},
     },
+    {
+        'stevearc/dressing.nvim',
+        opts = { input = { enabled = true }, },
+    },
 
     -- Git integration
     {
