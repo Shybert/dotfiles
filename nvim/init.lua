@@ -367,6 +367,20 @@ local plugins = {
         opts = { input = { enabled = true }, },
     },
 
+    -- File explorer
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        opts = {},
+        keys = {
+            { "<leader>t", "<cmd>NvimTreeToggle<cr>", desc = "Open file explorer" },
+        }
+    },
+
     -- Git integration
     {
         "lewis6991/gitsigns.nvim",
