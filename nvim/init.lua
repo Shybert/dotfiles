@@ -22,14 +22,26 @@ local plugins = {
         "catppuccin/nvim",
         lazy = false,
         priority = 1000,
-        config = function() vim.cmd.colorscheme("catppuccin") end,
+        config = function()
+            require("catppuccin").setup({
+                integrations = {
+                    blink_cmp = true
+                }
+            })
+            vim.cmd.colorscheme("catppuccin")
+        end,
     },
+    { 'HiPhish/rainbow-delimiters.nvim', version = false },
+
     -- Treesitter for syntax highlighting
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = { "BufReadPre", "BufNewFile" },
         main = "nvim-treesitter.configs",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
         opts = {
             highlight = { enable = true },
             indent = { enable = true },
@@ -54,20 +66,49 @@ local plugins = {
                 "toml",
                 "yaml",
                 "vim",
+                "c",
+                "cuda",
+            },
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true,
+                    keymaps = {
+                        ["aca"] = { query = "@call.outer", desc = "Select outer part of a call" },
+                        ["ica"] = { query = "@call.inner", desc = "Select inner part of a call" },
+                        ["acl"] = { query = "@class.outer", desc = "Select outer part of a class" },
+                        ["icl"] = { query = "@class.inner", desc = "Select inner part of a class" },
+                        ["afd"] = { query = "@function.outer", desc = "Select outer part of a function" },
+                        ["ifd"] = { query = "@function.inner", desc = "Select inner part of a function" },
+                        ["afc"] = { query = "@call.outer", desc = "Select outer part of a function call" },
+                        ["ifc"] = { query = "@call.inner", desc = "Select inner part of a function call" },
+                        ["aa"] = { query = "@assignment.outer", desc = "Select outer part of a assignment" },
+                        ["ia"] = { query = "@assignment.inner", desc = "Select inner part of a assignment" },
+                    }
+                }
             }
         },
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        lazy = true,
     },
     {
         "chrisgrieser/nvim-various-textobjs",
         lazy = false,
         opts = {
-            useDefaultKeymaps = true,
-            disabledKeymaps = { "gc" },
+            useDefaults = true,
+            disabledDefaults = { "gc" },
         },
+    },
+    -- Auto convert template strings
+    {
+        "axelvc/template-string.nvim",
+        config = true,
     },
 
     -- Icons used by various plugins
-    { "nvim-tree/nvim-web-devicons",         lazy = true },
+    { "nvim-tree/nvim-web-devicons",     lazy = true },
 
     -- Manager for external tools (e.g. LSPs)
     {
@@ -79,12 +120,12 @@ local plugins = {
         opts = {
             ensure_installed = {
                 "pyright",
-                "ruff-lsp",
+                "ruff",
                 "lua_ls",
                 "denols",
                 "html",
-                "typst_lsp",
                 "rust_analyzer",
+                "clangd"
                 -- "taplo", -- LSP for toml (for pyproject.toml files)
             },
         },
@@ -101,21 +142,25 @@ local plugins = {
             "folke/neodev.nvim",
         },
         init = function()
-            local lspCapabilities = vim.lsp.protocol.make_client_capabilities()
-            lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
+            -- local lspCapabilities = vim.lsp.protocol.make_client_capabilities()
+            -- lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
+            local lspCapabilities = require('blink.cmp').get_lsp_capabilities()
 
             require("lspconfig").pyright.setup({
                 capabilities = lspCapabilities,
                 settings = {
+                    pyright = {
+                        disableOrganizeImports = true,
+                    },
                     python = {
                         analysis = {
-                            typeCheckingMode = "off"
+                            typeCheckingMode = "off",
                         }
                     }
                 }
             })
 
-            require("lspconfig").ruff_lsp.setup({
+            require("lspconfig").ruff.setup({
                 -- Disable ruff as hover provider to avoid conflicts with pyright
                 on_attach = function(client)
                     client.server_capabilities.hoverProvider = false
@@ -160,12 +205,15 @@ local plugins = {
                 }
             })
 
-            require("lspconfig").typst_lsp.setup({
-                capabilities = lspCapabilities,
-            })
-
             require("lspconfig").rust_analyzer.setup({
                 capabilities = lspCapabilities,
+                settings = {
+                    ["rust-analyzer"] = {
+                        check = {
+                            command = "clippy",
+                        },
+                    }
+                }
             })
         end,
     },
@@ -194,14 +242,15 @@ local plugins = {
         event = "BufWritePre",
         keys = {
             {
-                "<leader>f",
+                "<leader>l",
                 function() require("conform").format({ lsp_fallback = true }) end,
                 desc = "Format",
             },
         },
         opts = {
             formatters_by_ft = {
-                python = { "ruff" },
+                python = { "ruff_format", "ruff_organize_imports" },
+                c = { "clang-format" },
 
                 -- Format codeblocks inside Markdown
                 markdown = { "inject" },
@@ -212,82 +261,36 @@ local plugins = {
         },
     },
 
-    -- Snippets
     {
-        "L3MON4D3/LuaSnip",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        event = "VeryLazy",
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip").filetype_extend("htmldjango", { "django" })
-        end
-    },
+        'saghen/blink.cmp',
+        dependencies = 'rafamadriz/friendly-snippets',
+        version = '*',
+        opts = {
+            keymap = { preset = 'super-tab' },
 
-    -- Completion
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-
-            -- Snippets
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
-        },
-        config = function()
-            local has_words_before = function()
-                unpack = unpack or table.unpack
-                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0 and
-                    vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-            end
-
-            local cmp = require('cmp')
-            local luasnip = require('luasnip')
-
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                    end
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
+            signature = { enabled = true },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+            enabled = function()
+                return not vim.tbl_contains({ "rip-substitute" }, vim.bo.filetype)
+                    and vim.bo.buftype ~= "prompt"
+                    and vim.b.completion ~= false
+            end,
+            completion = {
+                menu = {
+                    auto_show = function()
+                        return not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+                    end,
                 },
-                mapping = cmp.mapping.preset.insert({
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        elseif luasnip.expand_or_jumpable() then
-                            luasnip.expand_or_jump()
-                        elseif has_words_before() then
-                            cmp.complete()
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ["<s-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        elseif luasnip.jumpable(-1) then
-                            luasnip.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ["<c-e>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = {
-                    { name = "nvim_lsp" },
-                    { name = "luasnip" },
-                }
-            })
-        end,
+            },
+        },
+        opts_extend = { "sources.default" }
     },
 
-    -- Typst
-    {
-        "kaarmu/typst.vim",
-        ft = "typst",
-        lazy = false,
-    },
 
     -- Telescope for finding files, opening files, and grepping
     {
@@ -296,8 +299,8 @@ local plugins = {
         version = false,
         dependencies = { "nvim-lua/plenary.nvim" },
         keys = {
-            { "<leader>ff", "<cmd>Telescope git_files<cr>", desc = "Find Files (root dir)" },
-            { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Search Project" },
+            { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (root dir)" },
+            { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Search Project" },
         },
         opts = {
             extensions = {
@@ -384,44 +387,7 @@ local plugins = {
     -- Git integration
     {
         "lewis6991/gitsigns.nvim",
-        opts = {
-            on_attach = function(bufnr)
-                local gs = package.loaded.gitsigns
-
-                local function map(mode, l, r, opts)
-                    opts = opts or {}
-                    opts.buffer = bufnr
-                    vim.keymap.set(mode, l, r, opts)
-                end
-
-                -- Navigation
-                map('n', ']c', function()
-                    if vim.wo.diff then return ']c' end
-                    vim.schedule(function() gs.next_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true })
-
-                map('n', '[c', function()
-                    if vim.wo.diff then return '[c' end
-                    vim.schedule(function() gs.prev_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true })
-
-                -- Actions
-                map('n', '<leader>hs', gs.stage_hunk)
-                map('n', '<leader>hr', gs.reset_hunk)
-                map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-                map('v', '<leader>hr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-                map('n', '<leader>hS', gs.stage_buffer)
-                map('n', '<leader>hu', gs.undo_stage_hunk)
-                map('n', '<leader>hR', gs.reset_buffer)
-                map('n', '<leader>hp', gs.preview_hunk)
-                map('n', '<leader>hb', function() gs.blame_line { full = true } end)
-                map('n', '<leader>tb', gs.toggle_current_line_blame)
-                map('n', '<leader>hd', gs.diffthis)
-                map('n', '<leader>hD', function() gs.diffthis('~') end)
-            end
-        },
+        opts = {},
     },
     {
         "NeogitOrg/neogit",
@@ -434,14 +400,21 @@ local plugins = {
         config = true,
         keys = {
             { "<leader>g", "<cmd>Neogit<cr>" },
-        }
+        },
+        opts = {
+            integrations = {
+                diffview = true,
+            },
+        },
     },
 
     -- Virtual environment
     {
         "linux-cultist/venv-selector.nvim",
         dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
-        opts = {},
+        opts = {
+            stay_on_this_version = true
+        },
         keys = {
             { "<leader>vs", "<cmd>VenvSelect<cr>" },
             { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
@@ -464,16 +437,67 @@ local plugins = {
         config = true,
     },
     {
-        "ggandor/leap.nvim",
-        config = function()
-            require("leap").create_default_mappings()
-        end,
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            {
+                "s",
+                mode = { "n", "x", "o" },
+                function() require("flash").jump() end,
+                desc = "Flash"
+            },
+            {
+                "S",
+                mode = { "n", "x", "o" },
+                function() require("flash").treesitter() end,
+                desc = "Flash Treesitter"
+            },
+            {
+                "r",
+                mode = "o",
+                function() require("flash").remote() end,
+                desc = "Remote Flash"
+            },
+            {
+                "R",
+                mode = { "o", "x" },
+                function() require("flash").treesitter_search() end,
+                desc = "Treesitter Search"
+            },
+            {
+                "<c-s>",
+                mode = { "c" },
+                function() require("flash").toggle() end,
+                desc = "Toggle Flash Search"
+            },
+        },
     },
 
     -- Editing support
     { 'numToStr/Comment.nvim',               opts = {} },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",    opts = {} },
     { 'echasnovski/mini.pairs',              version = false, opts = {} },
+    { 'echasnovski/mini.operators',          version = false, opts = {} },
+    {
+        "chrisgrieser/nvim-rip-substitute",
+        cmd = "RipSubstitute",
+        opts = {},
+        keys = {
+            {
+                "<leader>fs",
+                function() require("rip-substitute").sub() end,
+                mode = { "n", "x" },
+                desc = " rip substitute",
+            },
+        },
+    },
+    {
+        'MagicDuck/grug-far.nvim',
+        config = function()
+            require('grug-far').setup();
+        end
+    },
 }
 
 require("lazy").setup(plugins)
