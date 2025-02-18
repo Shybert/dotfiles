@@ -219,6 +219,9 @@ local plugins = {
 
             require("lspconfig").clangd.setup({
                 capabilities = lspCapabilities,
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                end,
             })
         end,
     },
@@ -255,7 +258,6 @@ local plugins = {
         opts = {
             formatters_by_ft = {
                 python = { "ruff_format", "ruff_organize_imports" },
-                c = { "clang-format" },
 
                 -- Format codeblocks inside Markdown
                 markdown = { "inject" },
