@@ -67,6 +67,7 @@ local plugins = {
                 "yaml",
                 "vim",
                 "c",
+                "cpp",
                 "cuda",
             },
             textobjects = {
