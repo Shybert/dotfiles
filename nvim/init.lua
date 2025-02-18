@@ -216,6 +216,10 @@ local plugins = {
                     }
                 }
             })
+
+            require("lspconfig").clangd.setup({
+                capabilities = lspCapabilities,
+            })
         end,
     },
 
