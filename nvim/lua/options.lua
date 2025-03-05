@@ -26,3 +26,6 @@ vim.opt.iskeyword = vim.opt.iskeyword + { "-" }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>")
+
+-- Enable inlay hints
+vim.lsp.inlay_hint.enable(true)

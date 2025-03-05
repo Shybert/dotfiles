@@ -120,7 +120,7 @@ local plugins = {
         },
         opts = {
             ensure_installed = {
-                "pyright",
+                "basedpyright",
                 "ruff",
                 "lua_ls",
                 "denols",
@@ -147,16 +147,17 @@ local plugins = {
             -- lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
             local lspCapabilities = require('blink.cmp').get_lsp_capabilities()
 
-            require("lspconfig").pyright.setup({
+            require("lspconfig").basedpyright.setup({
                 capabilities = lspCapabilities,
                 settings = {
-                    pyright = {
+                    basedpyright = {
                         disableOrganizeImports = true,
-                    },
-                    python = {
                         analysis = {
                             typeCheckingMode = "off",
-                        }
+                            inlayHints = {
+                                variableTypes = false,
+                            }
+                        },
                     }
                 }
             })
