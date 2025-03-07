@@ -3,5 +3,6 @@
 
 !.gitignore
 !nvim/
+!starship.toml
 nvim/lazy-lock.json
 
