@@ -83,6 +83,8 @@ local plugins = {
                         ["ifd"] = { query = "@function.inner", desc = "Select inner part of a function" },
                         ["afc"] = { query = "@call.outer", desc = "Select outer part of a function call" },
                         ["ifc"] = { query = "@call.inner", desc = "Select inner part of a function call" },
+                        ["afp"] = { query = "@parameter.outer", desc = "Select outer part of a function parameter" },
+                        ["ifp"] = { query = "@parameter.inner", desc = "Select inner part of a function parameter" },
                         ["aa"] = { query = "@assignment.outer", desc = "Select outer part of a assignment" },
                         ["ia"] = { query = "@assignment.inner", desc = "Select inner part of a assignment" },
                     }
