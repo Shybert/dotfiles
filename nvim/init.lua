@@ -343,22 +343,35 @@ local plugins = {
 
     -- UI
     {
-        "akinsho/bufferline.nvim",
-        lazy = false,
-        version = "*",
-        dependencies = "nvim-tree/nvim-web-devicons",
-        opts = {
-            options = {
-                diagnostics = "nvim_lsp"
-            },
-        },
-        keys = {
-            { "<leader>bp", "<cmd>BufferLinePick<cr>",      desc = "Pick a tab" },
-            { "<leader>bc", "<cmd>bdelete<cr>",             desc = "Close current tab" },
-            { "<Tab>",      "<cmd>BufferLineCycleNext<cr>", desc = "Next tab" },
-            { "<S-Tab>",    "<cmd>BufferLineCyclePrev<cr>", desc = "Previous tab" },
-        },
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            local harpoon = require("harpoon")
+            harpoon:setup({})
+
+            vim.keymap.set("n", "ha", function() harpoon:list():add() end, { desc = "Add to Harpoon" })
+            vim.keymap.set("n", "hl", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+                { desc = "Open Harpoon window" })
+        end
     },
+    -- {
+    --     "akinsho/bufferline.nvim",
+    --     lazy = false,
+    --     version = "*",
+    --     dependencies = "nvim-tree/nvim-web-devicons",
+    --     opts = {
+    --         options = {
+    --             diagnostics = "nvim_lsp"
+    --         },
+    --     },
+    --     keys = {
+    --         { "<leader>bp", "<cmd>BufferLinePick<cr>",      desc = "Pick a tab" },
+    --         { "<leader>bc", "<cmd>bdelete<cr>",             desc = "Close current tab" },
+    --         { "<Tab>",      "<cmd>BufferLineCycleNext<cr>", desc = "Next tab" },
+    --         { "<S-Tab>",    "<cmd>BufferLineCyclePrev<cr>", desc = "Previous tab" },
+    --     },
+    -- },
     {
         'nvim-lualine/lualine.nvim',
         opts = {
