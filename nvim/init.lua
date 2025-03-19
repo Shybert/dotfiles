@@ -218,6 +218,11 @@ local plugins = {
                         check = {
                             command = "clippy",
                         },
+                        inlayHints = {
+                            typeHints = {
+                                enable = false
+                            }
+                        }
                     }
                 }
             })
