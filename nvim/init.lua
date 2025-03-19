@@ -350,8 +350,8 @@ local plugins = {
             local harpoon = require("harpoon")
             harpoon:setup({})
 
-            vim.keymap.set("n", "ha", function() harpoon:list():add() end, { desc = "Add to Harpoon" })
-            vim.keymap.set("n", "hl", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+            vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "Add to Harpoon" })
+            vim.keymap.set("n", "<leader>hl", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
                 { desc = "Open Harpoon window" })
         end
     },
