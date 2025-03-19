@@ -392,6 +392,13 @@ local plugins = {
         'stevearc/dressing.nvim',
         opts = { input = { enabled = true }, },
     },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            preset = "helix"
+        },
+    },
 
     -- File explorer
     {
