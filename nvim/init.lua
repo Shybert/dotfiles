@@ -138,8 +138,10 @@ local plugins = {
     {
         "neovim/nvim-lspconfig",
         keys = {
-            { "<leader>c",  vim.lsp.buf.code_action, desc = "Code Action" },
-            { "<leader>cr", vim.lsp.buf.rename,      desc = "Rename" },
+            { "gla", vim.lsp.buf.code_action, desc = "Code Action" },
+            { "gln", vim.lsp.buf.rename,      desc = "Rename" },
+            { "gld", vim.lsp.buf.definition,  desc = "Go to definition" },
+            { "glr", vim.lsp.buf.references,  desc = "References" },
         },
         dependencies = {
             "folke/neodev.nvim",
