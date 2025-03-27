@@ -163,9 +163,6 @@ local plugins = {
                         disableOrganizeImports = true,
                         analysis = {
                             typeCheckingMode = "off",
-                            inlayHints = {
-                                variableTypes = false,
-                            }
                         },
                     }
                 }
@@ -223,11 +220,6 @@ local plugins = {
                         check = {
                             command = "clippy",
                         },
-                        inlayHints = {
-                            typeHints = {
-                                enable = false
-                            }
-                        }
                     }
                 }
             })
