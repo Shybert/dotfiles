@@ -142,6 +142,11 @@ local plugins = {
             { "gln", vim.lsp.buf.rename,      desc = "Rename" },
             { "gld", vim.lsp.buf.definition,  desc = "Go to definition" },
             { "glr", vim.lsp.buf.references,  desc = "References" },
+            {
+                "<C-k>",
+                function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+                desc = "Enable inlay hints"
+            },
         },
         dependencies = {
             "folke/neodev.nvim",
