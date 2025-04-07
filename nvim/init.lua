@@ -522,9 +522,13 @@ local plugins = {
 
     -- Editing support
     { 'numToStr/Comment.nvim',               opts = {} },
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl",    opts = {} },
-    { 'echasnovski/mini.pairs',              version = false, opts = {} },
-    { 'echasnovski/mini.operators',          version = false, opts = {} },
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {},
+    },
+    { 'echasnovski/mini.operators', version = false, opts = {} },
     {
         "chrisgrieser/nvim-rip-substitute",
         cmd = "RipSubstitute",
