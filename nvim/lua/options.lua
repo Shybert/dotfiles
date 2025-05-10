@@ -19,9 +19,6 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Dash should be a keyword
-vim.opt.iskeyword = vim.opt.iskeyword + { "-" }
-
 -- Set leader key to Space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
