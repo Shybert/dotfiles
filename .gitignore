@@ -6,4 +6,7 @@
 !starship.toml
 nvim/lazy-lock.json
 !wezterm/
+!git/
+git/*
+!git/config
 
