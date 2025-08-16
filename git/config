@@ -29,3 +29,6 @@
 [core]
 	fsmonitor = true
 	untrackedCache = true
+[alias]
+	uncommit = reset --mixed HEAD~
+	amend = commit --amend
