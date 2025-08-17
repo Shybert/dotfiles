@@ -29,6 +29,13 @@
 [core]
 	fsmonitor = true
 	untrackedCache = true
+	pager = delta
 [alias]
 	uncommit = reset --mixed HEAD~
 	amend = commit --amend
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[merge]
+	conflictStyle = zdiff3
