@@ -436,22 +436,22 @@ local plugins = {
         opts = {},
     },
     {
-        "NeogitOrg/neogit",
+        "kdheepak/lazygit.nvim",
+        lazy = true,
+        cmd = {
+            "LazyGit",
+            "LazyGitConfig",
+            "LazyGitCurrentFile",
+            "LazyGitFilter",
+            "LazyGitFilterCurrentFile",
+        },
+        -- optional for floating window border decoration
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "sindrets/diffview.nvim",
-
-            "nvim-telescope/telescope.nvim",
         },
-        config = true,
         keys = {
-            { "<leader>g", "<cmd>Neogit<cr>" },
-        },
-        opts = {
-            integrations = {
-                diffview = true,
-            },
-        },
+            { "<leader>g", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+        }
     },
 
     -- Virtual environment
