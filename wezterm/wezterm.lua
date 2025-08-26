@@ -33,6 +33,53 @@ config.keys = {
         mods = "CTRL",
         action = wezterm.action.PasteFrom "Clipboard",
     },
+
+    {
+        mods = "CTRL|SHIFT",
+        key = "|",
+        action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "_",
+        action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "j",
+        action = wezterm.action.ActivatePaneDirection "Down"
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "k",
+        action = wezterm.action.ActivatePaneDirection "Up"
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "h",
+        action = wezterm.action.ActivatePaneDirection "Left"
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "l",
+        action = wezterm.action.ActivatePaneDirection "Right"
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "w",
+        action = wezterm.action.CloseCurrentPane { confirm = true },
+    },
+
+    {
+        mods = "CTRL|SHIFT",
+        key = " ",
+        action = wezterm.action.QuickSelect
+    },
+    {
+        mods = "CTRL|SHIFT",
+        key = "X",
+        action = wezterm.action.ActivateCopyMode
+    },
 }
 
 -- and finally, return the configuration to wezterm
