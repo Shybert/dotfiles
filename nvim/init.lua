@@ -56,6 +56,7 @@ local plugins = {
             ensure_installed = {
                 "json",
                 "javascript",
+                "typescript",
                 "bash",
                 "css",
                 "csv",
@@ -77,6 +78,7 @@ local plugins = {
                 "c",
                 "cpp",
                 "cuda",
+                "vue",
             },
             textobjects = {
                 select = {
@@ -119,25 +121,24 @@ local plugins = {
     },
 
     -- Icons used by various plugins
-    { "nvim-tree/nvim-web-devicons",     lazy = true },
+    { "nvim-tree/nvim-web-devicons",         lazy = true },
 
     -- Manager for external tools (e.g. LSPs)
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = {
-            { "williamboman/mason.nvim",           opts = true },
-            { "williamboman/mason-lspconfig.nvim", opts = true },
+            { "mason-org/mason.nvim",           opts = true },
+            { "mason-org/mason-lspconfig.nvim", opts = true },
         },
         opts = {
             ensure_installed = {
                 "basedpyright",
                 "ruff",
                 "lua_ls",
-                "denols",
                 "html",
                 "rust_analyzer",
-                "clangd"
-                -- "taplo", -- LSP for toml (for pyproject.toml files)
+                "clangd",
+                "ts_ls",
             },
         },
     },
@@ -146,10 +147,10 @@ local plugins = {
     {
         "neovim/nvim-lspconfig",
         keys = {
-            { "gla", vim.lsp.buf.code_action, desc = "Code Action" },
-            { "gln", vim.lsp.buf.rename,      desc = "Rename" },
-            { "gld", vim.lsp.buf.definition,  desc = "Go to definition" },
-            { "glr", vim.lsp.buf.references,  desc = "References" },
+            { "<leader>la", vim.lsp.buf.code_action, desc = "Code Action" },
+            { "<leader>ln", vim.lsp.buf.rename,      desc = "Rename" },
+            { "<leader>ld", vim.lsp.buf.definition,  desc = "Go to definition" },
+            { "<leader>lr", vim.lsp.buf.references,  desc = "References" },
             {
                 "<C-k>",
                 function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
@@ -160,8 +161,6 @@ local plugins = {
             "folke/neodev.nvim",
         },
         init = function()
-            -- local lspCapabilities = vim.lsp.protocol.make_client_capabilities()
-            -- lspCapabilities.textDocument.completion.completionItem.snippetSupport = true
             local lspCapabilities = require('blink.cmp').get_lsp_capabilities()
 
             require("lspconfig").basedpyright.setup({
@@ -183,10 +182,6 @@ local plugins = {
                 end,
             })
 
-            require("lspconfig").denols.setup {
-                capabilities = lspCapabilities,
-            }
-
             require("lspconfig").html.setup {
                 capabilities = lspCapabilities,
                 filetypes = { "html", "htmldjango" },
@@ -194,11 +189,6 @@ local plugins = {
                     client.server_capabilities.documentFormattingProvider = false
                 end,
             }
-
-            -- -- setup taplo with completion capabilities
-            -- require("lspconfig").taplo.setup({
-            -- 	capabilities = lspCapabilities,
-            -- })
 
             require("lspconfig").lua_ls.setup({
                 capabilities = lspCapabilities,
@@ -238,6 +228,17 @@ local plugins = {
                     client.server_capabilities.documentFormattingProvider = false
                 end,
             })
+
+            require("lspconfig").ts_ls.setup({
+                capabilities = lspCapabilities,
+                filetypes = {
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact",
+                    "vue",
+                },
+            })
         end,
     },
 
@@ -265,7 +266,7 @@ local plugins = {
         event = "BufWritePre",
         keys = {
             {
-                "<leader>l",
+                "<leader>lf",
                 function() require("conform").format({ lsp_fallback = true }) end,
                 desc = "Format",
             },
@@ -273,6 +274,8 @@ local plugins = {
         opts = {
             formatters_by_ft = {
                 python = { "ruff_format", "ruff_organize_imports" },
+                javascript = { "prettier" },
+                typescript = { "prettier" },
 
                 -- Format codeblocks inside Markdown
                 markdown = { "inject" },
