@@ -24,9 +24,7 @@ local plugins = {
         priority = 1000,
         config = function()
             require("catppuccin").setup({
-                integrations = {
-                    blink_cmp = true
-                }
+                auto_integrations = true
             })
             vim.cmd.colorscheme("catppuccin")
         end,
