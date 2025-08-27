@@ -31,7 +31,15 @@ local plugins = {
             vim.cmd.colorscheme("catppuccin")
         end,
     },
-    { 'HiPhish/rainbow-delimiters.nvim', version = false },
+    {
+        'HiPhish/rainbow-delimiters.nvim',
+        version = false,
+        init = function()
+            vim.g.rainbow_delimiters = {
+                blacklist = { "vue" },
+            }
+        end,
+    },
 
     -- Treesitter for syntax highlighting
     {
