@@ -291,14 +291,7 @@ local plugins = {
         version = '*',
         opts = {
             keymap = { preset = 'super-tab' },
-
-            appearance = {
-                nerd_font_variant = 'mono'
-            },
             signature = { enabled = true },
-            sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
-            },
             enabled = function()
                 return not vim.tbl_contains({ "rip-substitute" }, vim.bo.filetype)
                     and vim.bo.buftype ~= "prompt"
