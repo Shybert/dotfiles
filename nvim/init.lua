@@ -274,6 +274,7 @@ local plugins = {
                 python = { "ruff_format", "ruff_organize_imports" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
+                vue = { "prettier" },
 
                 -- Format codeblocks inside Markdown
                 markdown = { "inject" },
