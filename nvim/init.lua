@@ -419,6 +419,10 @@ local plugins = {
             preset = "helix"
         },
     },
+    {
+        "sphamba/smear-cursor.nvim",
+        opts = {},
+    },
 
     -- File explorer
     {
