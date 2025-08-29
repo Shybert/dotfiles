@@ -108,8 +108,9 @@ local plugins = {
         "chrisgrieser/nvim-various-textobjs",
         lazy = false,
         opts = {
-            useDefaults = true,
-            disabledDefaults = { "gc" },
+            keymaps = {
+                useDefaults = true
+            },
         },
     },
     -- Auto convert template strings

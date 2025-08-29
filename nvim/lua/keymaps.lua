@@ -20,9 +20,6 @@ vim.keymap.set("i", "<C-s>", "<C-o>:update<cr>")
 -- Multi-cursor, but better?
 vim.keymap.set("n", "<C-n>", "*Ncgn")
 
--- Better keybind for the quote text object
-vim.keymap.set("o", "aq", 'a"')
-
 -- Better j/k behavior with wrapped lines
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
