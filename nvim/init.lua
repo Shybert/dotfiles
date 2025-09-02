@@ -139,6 +139,7 @@ local plugins = {
                 "clangd",
                 "vtsls",
                 "vue_ls",
+                "tailwindcss",
             },
         },
     },
@@ -255,7 +256,7 @@ local plugins = {
                 },
             })
 
-            vim.lsp.enable({ "vtsls", "vue_ls" })
+            vim.lsp.enable({ "vtsls", "tailwind_css", "vue_ls" })
         end,
     },
 
