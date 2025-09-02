@@ -230,7 +230,6 @@ local plugins = {
             })
 
             vim.lsp.config("vtsls", {
-                capabilities = lspCapabilities,
                 filetypes = {
                     "javascript",
                     "javascriptreact",
