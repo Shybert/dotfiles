@@ -137,7 +137,8 @@ local plugins = {
                 "html",
                 "rust_analyzer",
                 "clangd",
-                "ts_ls",
+                "vtsls",
+                "vue_ls",
             },
         },
     },
@@ -228,7 +229,7 @@ local plugins = {
                 end,
             })
 
-            require("lspconfig").ts_ls.setup({
+            vim.lsp.config("vtsls", {
                 capabilities = lspCapabilities,
                 filetypes = {
                     "javascript",
@@ -237,7 +238,25 @@ local plugins = {
                     "typescriptreact",
                     "vue",
                 },
+                settings = {
+                    reuse_client = true,
+                    vtsls = {
+                        tsserver = {
+                            globalPlugins = {
+                                {
+                                    name = '@vue/typescript-plugin',
+                                    location = vim.fn.stdpath 'data' ..
+                                        '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+                                    languages = { 'vue' },
+                                    configNamespace = 'typescript',
+                                },
+                            },
+                        },
+                    },
+                },
             })
+
+            vim.lsp.enable({ "vtsls", "vue_ls" })
         end,
     },
 
