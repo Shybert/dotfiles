@@ -16,6 +16,7 @@
 [push]
 	autoSetupRemote = true
 	followTags = true
+	default = current
 [fetch]
 	prune = true
 	pruneTags = true
