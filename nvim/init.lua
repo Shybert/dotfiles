@@ -585,7 +585,8 @@ local plugins = {
         event = "InsertEnter",
         opts = {},
     },
-    { 'echasnovski/mini.operators', version = false, opts = {} },
+    -- Disable sort operator in favor of `mini.surround`
+    { 'echasnovski/mini.operators', version = false, opts = { sort = { prefix = "", }, }, },
     {
         "chrisgrieser/nvim-rip-substitute",
         cmd = "RipSubstitute",
@@ -604,6 +605,21 @@ local plugins = {
         config = function()
             require('grug-far').setup();
         end
+    },
+    {
+        'nvim-mini/mini.surround',
+        version = false,
+        opts = {
+            mappings = {
+                add = "gsa",            -- Add surrounding in Normal and Visual modes
+                delete = "gsd",         -- Delete surrounding
+                find = "gsf",           -- Find surrounding (to the right)
+                find_left = "gsF",      -- Find surrounding (to the left)
+                highlight = "gsh",      -- Highlight surrounding
+                replace = "gsr",        -- Replace surrounding
+                update_n_lines = "gsn", -- Update `n_lines`
+            },
+        },
     },
 }
 
