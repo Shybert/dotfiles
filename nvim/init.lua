@@ -469,17 +469,19 @@ local plugins = {
 
     -- File explorer
     {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
-        lazy = false,
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
         dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
             "nvim-tree/nvim-web-devicons",
         },
-        opts = {},
+        lazy = false,
         keys = {
-            { "<leader>t", "<cmd>NvimTreeToggle<cr>", desc = "Open file explorer" },
-        }
+            { "<leader>t", "<cmd>Neotree<cr>", desc = "Open file explorer" }
+        },
     },
+
 
     -- Git integration
     {
