@@ -113,6 +113,11 @@ local plugins = {
             },
         },
     },
+    {
+        "windwp/nvim-ts-autotag",
+        -- event = "LazyFile",
+        opts = {},
+    },
     -- Auto convert template strings
     {
         "axelvc/template-string.nvim",
