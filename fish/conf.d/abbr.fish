@@ -11,3 +11,5 @@ abbr --add dcd "docker compose down"
 
 abbr --add lg "lazygit"
 abbr --add lzd "lazydocker"
+
+abbr --add ls "eza --icons --group-directories-first -1"
