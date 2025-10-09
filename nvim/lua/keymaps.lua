@@ -23,3 +23,6 @@ vim.keymap.set("n", "<C-n>", "*Ncgn")
 -- Better j/k behavior with wrapped lines
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
+
+-- Save and quit all buffers on ZZ
+vim.keymap.set("n", "ZZ", ":xa<CR>")
