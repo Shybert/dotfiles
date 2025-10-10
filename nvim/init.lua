@@ -485,6 +485,14 @@ local plugins = {
         keys = {
             { "<leader>t", "<cmd>Neotree<cr>", desc = "Open file explorer" }
         },
+        opts = {
+            filesystem = {
+                follow_current_file = {
+                    enabled = true,
+                },
+                use_libuv_file_watcher = true,
+            },
+        },
     },
 
 
