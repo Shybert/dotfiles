@@ -13,3 +13,4 @@ abbr --add lg "lazygit"
 abbr --add lzd "lazydocker"
 
 abbr --add ls "eza --icons --group-directories-first -1"
+abbr --add lt "eza --icons --group-directories-first --tree --level=3"
