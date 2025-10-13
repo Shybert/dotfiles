@@ -516,10 +516,6 @@ local plugins = {
 
     -- Movement
     {
-        "karb94/neoscroll.nvim",
-        config = true,
-    },
-    {
         "folke/flash.nvim",
         event = "VeryLazy",
         opts = {},
@@ -610,6 +606,7 @@ local plugins = {
             explorer = { enabled = true },
             image = { enabled = true },
             picker = { enabled = true },
+            scroll = { enabled = true },
         },
         keys = {
             { "<leader>e",  function() Snacks.explorer() end,       desc = "File Explorer" },
