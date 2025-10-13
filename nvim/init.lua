@@ -472,24 +472,6 @@ local plugins = {
         "lewis6991/gitsigns.nvim",
         opts = {},
     },
-    {
-        "kdheepak/lazygit.nvim",
-        lazy = true,
-        cmd = {
-            "LazyGit",
-            "LazyGitConfig",
-            "LazyGitCurrentFile",
-            "LazyGitFilter",
-            "LazyGitFilterCurrentFile",
-        },
-        -- optional for floating window border decoration
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        keys = {
-            { "<leader>g", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-        }
-    },
 
     -- Virtual environment
     {
@@ -605,11 +587,13 @@ local plugins = {
         opts = {
             explorer = { enabled = true },
             image = { enabled = true },
+            lazygit = { enabled = true },
             picker = { enabled = true },
             scroll = { enabled = true },
         },
         keys = {
             { "<leader>e",  function() Snacks.explorer() end,       desc = "File Explorer" },
+            { "<leader>gg", function() Snacks.lazygit() end,        desc = "Lazygit" },
 
             { "<leader>ff", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
             { "<leader>fg", function() Snacks.picker.grep() end,    desc = "Grep" },
