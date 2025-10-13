@@ -614,6 +614,7 @@ local plugins = {
             { "<leader>ff", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
             { "<leader>fg", function() Snacks.picker.grep() end,    desc = "Grep" },
             { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+            { "<leader>fj", function() Snacks.picker.jumps() end,   desc = "Jumps" },
         }
     },
 }
