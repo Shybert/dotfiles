@@ -125,7 +125,7 @@ local plugins = {
     },
 
     -- Icons used by various plugins
-    { "nvim-tree/nvim-web-devicons",         lazy = true },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
 
     -- Manager for external tools (e.g. LSPs)
     {
@@ -536,14 +536,13 @@ local plugins = {
     },
 
     -- Editing support
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {},
     },
     -- Disable sort operator in favor of `mini.surround`
-    { 'echasnovski/mini.operators', version = false, opts = { sort = { prefix = "", }, }, },
+    { 'echasnovski/mini.operators',  version = false, opts = { sort = { prefix = "", }, }, },
     {
         "chrisgrieser/nvim-rip-substitute",
         cmd = "RipSubstitute",
@@ -587,6 +586,7 @@ local plugins = {
         opts = {
             explorer = { enabled = true },
             image = { enabled = true },
+            indent = { enabled = true },
             lazygit = { enabled = true },
             picker = { enabled = true },
             scroll = { enabled = true },
