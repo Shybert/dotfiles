@@ -334,35 +334,6 @@ local plugins = {
     },
 
 
-    -- Telescope for finding files, opening files, and grepping
-    {
-        "nvim-telescope/telescope.nvim",
-        cmd = "Telescope",
-        version = false,
-        dependencies = { "nvim-lua/plenary.nvim" },
-        keys = {
-            { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (root dir)" },
-            { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Search Project" },
-        },
-        opts = {
-            extensions = {
-                fzf = {
-                    fuzzy = true,
-                    override_generic_sorter = true,
-                    override_file_sorter = true,
-                    case_mode = "smart_case"
-                }
-            }
-        }
-    },
-    {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        config = function()
-            require('telescope').load_extension('fzf')
-        end
-    },
-
     -- Diagnostics
     {
         "folke/trouble.nvim",
@@ -628,6 +599,25 @@ local plugins = {
                 update_n_lines = "gsn", -- Update `n_lines`
             },
         },
+    },
+
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            explorer = { enabled = true },
+            image = { enabled = true },
+            picker = { enabled = true },
+        },
+        keys = {
+            { "<leader>e",  function() Snacks.explorer() end,       desc = "File Explorer" },
+
+            { "<leader>ff", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
+            { "<leader>fg", function() Snacks.picker.grep() end,    desc = "Grep" },
+            { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        }
     },
 }
 
