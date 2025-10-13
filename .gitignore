@@ -18,3 +18,5 @@ fish/conf.d/*
 !fish/conf.d/abbr.fish
 
 !lazygit/
+
+!ghostty/
