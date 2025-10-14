@@ -605,6 +605,15 @@ local plugins = {
             { "<leader>fj", function() Snacks.picker.jumps() end,   desc = "Jumps" },
         }
     },
+
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {},
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        }
+    },
 }
 
 require("lazy").setup(plugins)
