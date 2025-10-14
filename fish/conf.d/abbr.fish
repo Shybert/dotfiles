@@ -14,3 +14,4 @@ abbr --add lzd "lazydocker"
 
 abbr --add ls "eza --icons --group-directories-first -1"
 abbr --add lt "eza --icons --group-directories-first --tree --level=3"
+abbr --add la "eza --icons --group-directories-first -1 -l -a"
