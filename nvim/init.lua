@@ -586,6 +586,7 @@ local plugins = {
         ---@type snacks.Config
         opts = {
             explorer = { enabled = true },
+            git = { enabled = true },
             image = { enabled = true },
             indent = { enabled = true },
             lazygit = { enabled = true },
@@ -594,7 +595,9 @@ local plugins = {
         },
         keys = {
             { "<leader>e",  function() Snacks.explorer() end,       desc = "File Explorer" },
+
             { "<leader>gg", function() Snacks.lazygit() end,        desc = "Lazygit" },
+            { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Blame line" },
 
             { "<leader>ff", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
             { "<leader>fg", function() Snacks.picker.grep() end,    desc = "Grep" },
