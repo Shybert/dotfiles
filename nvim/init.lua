@@ -542,6 +542,11 @@ local plugins = {
         event = "InsertEnter",
         opts = {},
     },
+    {
+        "folke/ts-comments.nvim",
+        opts = {},
+        event = "VeryLazy",
+    },
     -- Disable sort operator in favor of `mini.surround`
     { 'echasnovski/mini.operators',  version = false, opts = { sort = { prefix = "", }, }, },
     {
