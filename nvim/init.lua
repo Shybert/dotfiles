@@ -595,6 +595,7 @@ local plugins = {
             image = { enabled = true },
             indent = { enabled = true },
             lazygit = { enabled = true },
+            notifier = { enabled = true },
             picker = { enabled = true },
             scroll = { enabled = true },
         },
