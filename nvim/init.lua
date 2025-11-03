@@ -122,12 +122,27 @@ local plugins = {
     {
         "axelvc/template-string.nvim",
         config = true,
+        opts = {
+            filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte', 'python', },
+        }
     },
 
     -- Icons used by various plugins
     { "nvim-tree/nvim-web-devicons", lazy = true },
 
     -- Manager for external tools (e.g. LSPs)
+    {
+        "mason-org/mason.nvim",
+        lazy = true,
+        config = function()
+            require('mason').setup({
+                registries = {
+                    'github:Crashdummyy/mason-registry',
+                    'github:mason-org/mason-registry',
+                },
+            })
+        end
+    },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = {
@@ -147,6 +162,12 @@ local plugins = {
                 "tailwindcss",
             },
         },
+    },
+    {
+        "seblyng/roslyn.nvim",
+        ---@module 'roslyn.config'
+        ---@type RoslynNvimConfig
+        opts = {},
     },
 
     -- Setup LSPs
@@ -262,7 +283,7 @@ local plugins = {
                 },
             })
 
-            vim.lsp.enable({ "vtsls", "tailwind_css", "vue_ls" })
+            vim.lsp.enable({ "vtsls", "tailwind_css", "vue_ls", "roslyn" })
         end,
     },
 
