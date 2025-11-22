@@ -399,6 +399,12 @@ local plugins = {
         dependencies = "nvim-tree/nvim-web-devicons",
         opts = {
             options = {
+                close_command = function(n)
+                    Snacks.bufdelete(n)
+                end,
+                right_mouse_command = function(n)
+                    Snacks.bufdelete(n)
+                end,
                 diagnostics = "nvim_lsp",
                 separator_style = "slant",
                 diagnostics_indicator = function(_, _, diagnostics_dict, _)
@@ -419,7 +425,11 @@ local plugins = {
         },
         keys = {
             { "<leader>bp", "<cmd>BufferLinePick<cr>",        desc = "Pick a tab" },
-            { "<leader>bc", "<cmd>bdelete<cr>",               desc = "Close current tab" },
+            {
+                "<leader>bc",
+                function() Snacks.bufdelete() end,
+                desc = "Close current tab"
+            },
             { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other tabs" },
             { "<Tab>",      "<cmd>BufferLineCycleNext<cr>",   desc = "Next tab" },
             { "<S-Tab>",    "<cmd>BufferLineCyclePrev<cr>",   desc = "Previous tab" },
