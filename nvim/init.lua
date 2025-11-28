@@ -95,6 +95,8 @@ local plugins = {
                         ["ifp"] = { query = "@parameter.inner", desc = "Select inner part of a function parameter" },
                         ["aa"] = { query = "@assignment.outer", desc = "Select outer part of a assignment" },
                         ["ia"] = { query = "@assignment.inner", desc = "Select inner part of a assignment" },
+                        ["acm"] = { query = "@comment.outer", desc = "Select outer part of a comment" },
+                        ["icm"] = { query = "@comment.inner", desc = "Select inner part of a comment" },
                     }
                 }
             }
@@ -355,7 +357,6 @@ local plugins = {
         opts_extend = { "sources.default" }
     },
 
-
     -- Diagnostics
     {
         "folke/trouble.nvim",
@@ -424,7 +425,8 @@ local plugins = {
             },
         },
         keys = {
-            { "<leader>bp", "<cmd>BufferLinePick<cr>",        desc = "Pick a tab" },
+            { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",            desc = "Toggle pin" },
+            { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>", desc = "Delete non-pinned buffers" },
             {
                 "<leader>bc",
                 function() Snacks.bufdelete() end,
