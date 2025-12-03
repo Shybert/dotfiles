@@ -289,24 +289,6 @@ local plugins = {
         end,
     },
 
-    -- LSP preview
-    {
-        "rmagatti/goto-preview",
-        opts = {},
-        keys = {
-            {
-                "<leader>cp",
-                function() require("goto-preview").goto_preview_definition() end,
-                desc = "Preview definition",
-            },
-            {
-                "<leader>cP",
-                function() require("goto-preview").close_all_win() end,
-                desc = "Close preview definition windows",
-            },
-        }
-    },
-
     -- Formatting
     {
         "stevearc/conform.nvim",
