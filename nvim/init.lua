@@ -122,11 +122,8 @@ local plugins = {
     },
     -- Auto convert template strings
     {
-        "axelvc/template-string.nvim",
-        config = true,
-        opts = {
-            filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'vue', 'svelte', 'python', },
-        }
+        "chrisgrieser/nvim-puppeteer",
+        lazy = false,
     },
 
     -- Icons used by various plugins
