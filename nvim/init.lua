@@ -638,7 +638,7 @@ local plugins = {
             indent = { enabled = true },
             lazygit = { enabled = true },
             notifier = { enabled = true },
-            picker = { enabled = true },
+            picker = { enabled = true, sources = { files = { hidden = true } } },
             scroll = { enabled = true },
         },
         keys = {
