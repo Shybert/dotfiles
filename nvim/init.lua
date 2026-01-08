@@ -77,6 +77,7 @@ local plugins = {
                 "cpp",
                 "cuda",
                 "vue",
+                "regex"
             },
             textobjects = {
                 select = {
