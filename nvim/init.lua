@@ -678,18 +678,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
--- Automatically select Python virtual environment after loading session
-vim.api.nvim_create_autocmd({ "User" }, {
-    desc = 'Automatically select virtual environment when loading a session',
-    pattern = 'PersistedLoadPre',
-    callback = function()
-        local venv = vim.fn.findfile('pyproject.toml', vim.fn.getcwd() .. ';')
-        if venv ~= '' then
-            require('venv-selector').retrieve_from_cache()
-        end
-    end,
-})
-
 -- Auto close Snacks explorer when last open
 vim.api.nvim_create_autocmd('QuitPre', {
     callback = function()
