@@ -643,15 +643,16 @@ local plugins = {
             scroll = { enabled = true },
         },
         keys = {
-            { "<leader>e",  function() Snacks.explorer() end,       desc = "File Explorer" },
+            { "<leader>e",  function() Snacks.explorer() end,              desc = "File Explorer" },
 
-            { "<leader>gg", function() Snacks.lazygit() end,        desc = "Lazygit" },
-            { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Blame line" },
+            { "<leader>gg", function() Snacks.lazygit() end,               desc = "Lazygit" },
+            { "<leader>gb", function() Snacks.git.blame_line() end,        desc = "Blame line" },
 
-            { "<leader>ff", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
-            { "<leader>fg", function() Snacks.picker.grep() end,    desc = "Grep" },
-            { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-            { "<leader>fj", function() Snacks.picker.jumps() end,   desc = "Jumps" },
+            { "<leader>ff", function() Snacks.picker.smart() end,          desc = "Smart Find Files" },
+            { "<leader>fg", function() Snacks.picker.grep() end,           desc = "Grep" },
+            { "<leader>fb", function() Snacks.picker.buffers() end,        desc = "Buffers" },
+            { "<leader>fj", function() Snacks.picker.jumps() end,          desc = "Jumps" },
+            { "<leader>fn", function() Snacks.notifier.show_history() end, desc = "Notifications" },
         }
     },
 
