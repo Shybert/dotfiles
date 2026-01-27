@@ -1,4 +1,4 @@
-function jwt-decode
+function jwt_decode
     # Remove "Bearer " prefix if it exists (case-insensitive)
     set -l token (string replace -ir '^Bearer\s+' '' -- $argv[1])
 
