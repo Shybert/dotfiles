@@ -429,11 +429,6 @@ local plugins = {
         },
     },
     {
-        'Aasim-A/scrollEOF.nvim',
-        event = { 'CursorMoved', 'WinScrolled' },
-        opts = {},
-    },
-    {
         'stevearc/dressing.nvim',
         opts = { input = { enabled = true }, },
     },
@@ -640,7 +635,6 @@ local plugins = {
             lazygit = { enabled = true },
             notifier = { enabled = true },
             picker = { enabled = true, sources = { files = { hidden = true } } },
-            scroll = { enabled = true },
         },
         keys = {
             { "<leader>e",  function() Snacks.explorer() end,              desc = "File Explorer" },
