@@ -605,7 +605,11 @@ local plugins = {
     {
         'MagicDuck/grug-far.nvim',
         config = function()
-            require('grug-far').setup();
+            require('grug-far').setup({
+                openTargetWindow = {
+                    preferredLocation = 'prev'
+                }
+            });
         end
     },
     {
