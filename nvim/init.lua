@@ -58,7 +58,6 @@ local plugins = {
                 "bash",
                 "css",
                 "csv",
-                "dockerfile",
                 "fish",
                 "gitignore",
                 "html",
