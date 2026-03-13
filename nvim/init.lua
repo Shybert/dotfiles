@@ -76,7 +76,10 @@ local plugins = {
                 "cpp",
                 "cuda",
                 "vue",
-                "regex"
+                "regex",
+                "terraform",
+                "dockerfile",
+                "wgsl"
             },
             textobjects = {
                 select = {
