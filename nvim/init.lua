@@ -412,9 +412,9 @@ local plugins = {
                 function() Snacks.bufdelete() end,
                 desc = "Close current tab"
             },
-            { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other tabs" },
-            { "<Tab>",      "<cmd>BufferLineCycleNext<cr>",   desc = "Next tab" },
-            { "<S-Tab>",    "<cmd>BufferLineCyclePrev<cr>",   desc = "Previous tab" },
+            { "<leader>bo",      "<cmd>BufferLineCloseOthers<cr>", desc = "Close other tabs" },
+            { "<leader><Tab>",   "<cmd>BufferLineCycleNext<cr>",   desc = "Next tab" },
+            { "<leader><S-Tab>", "<cmd>BufferLineCyclePrev<cr>",   desc = "Previous tab" },
         },
     },
     {
