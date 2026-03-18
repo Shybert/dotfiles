@@ -376,50 +376,6 @@ local plugins = {
         end
     },
     {
-        "akinsho/bufferline.nvim",
-        lazy = false,
-        version = "*",
-        dependencies = "nvim-tree/nvim-web-devicons",
-        opts = {
-            options = {
-                close_command = function(n)
-                    Snacks.bufdelete(n)
-                end,
-                right_mouse_command = function(n)
-                    Snacks.bufdelete(n)
-                end,
-                diagnostics = "nvim_lsp",
-                separator_style = "slant",
-                diagnostics_indicator = function(_, _, diagnostics_dict, _)
-                    local s = " "
-                    for e, n in pairs(diagnostics_dict) do
-                        local sym = e == "error" and " "
-                            or (e == "warning" and " " or " ")
-                        s = s .. n .. sym
-                    end
-                    return s
-                end,
-                offsets = {
-                    {
-                        filetype = "snacks_layout_box",
-                    },
-                },
-            },
-        },
-        keys = {
-            { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",            desc = "Toggle pin" },
-            { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>", desc = "Delete non-pinned buffers" },
-            {
-                "<leader>bc",
-                function() Snacks.bufdelete() end,
-                desc = "Close current tab"
-            },
-            { "<leader>bo",      "<cmd>BufferLineCloseOthers<cr>", desc = "Close other tabs" },
-            { "<leader><Tab>",   "<cmd>BufferLineCycleNext<cr>",   desc = "Next tab" },
-            { "<leader><S-Tab>", "<cmd>BufferLineCyclePrev<cr>",   desc = "Previous tab" },
-        },
-    },
-    {
         'nvim-lualine/lualine.nvim',
         opts = {
             options = {
