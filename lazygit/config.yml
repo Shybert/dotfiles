@@ -5,3 +5,8 @@ git:
 gui:
   showRandomTip: false
   nerdFontsVersion: 3
+services:
+  'milliways.nhn.no': 'gitlab:milliways.nhn.no'
+  'gitlab.nhn.no': 'gitlab:gitlab.nhn.no'
+  'helsegitlab.nhn.no': 'gitlab:helsegitlab.nhn.no'
+promptToReturnFromSubprocess: false
